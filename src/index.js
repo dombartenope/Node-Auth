@@ -1,7 +1,9 @@
+import './env.js';
 import { fastify } from 'fastify';
 import fastifyStatic from 'fastify-static';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { connectDb } from './db.js';
 
 //ESM specific feature
 const __filename = fileURLToPath(import.meta.url);
@@ -16,11 +18,11 @@ async function startApp() {
             root: path.join(__dirname, "public"),
         })
         
-        app.get('/', {}, (request, reply) => {
-            reply.send({
-                data: "Hello World",
-            })
-        })
+        // app.get('/', {}, (request, reply) => {
+        //     reply.send({
+        //         data: "Hello World",
+        //     })
+        // })
 
         await app.listen(8000);
         console.log('Server listening on port 8000')
@@ -32,4 +34,6 @@ async function startApp() {
     }
 }
 
-startApp();
+connectDb().then(() => {
+    startApp();
+});

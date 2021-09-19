@@ -6,13 +6,15 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "nodemon ./src/index.js"
+    "dev": "nodemon --watch src/ --exec ./src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "fastify": "^3.21.3",
-    "fastify-static": "^4.2.3"
+    "fastify-static": "^4.2.3",
+    "mongodb": "^4.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
